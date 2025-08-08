@@ -1,7 +1,7 @@
 using Turing, Distributions, StatsPlots, MCMCChains, QuadGK, CSV, DataFrames, LinearAlgebra, Statistics, DelimitedFiles, StatsBase, DataFrames
 
 # Base path
-base_path = "/home/lassco/Adriel/pesquisa/"
+base_path = "path"
 
 # Reading files
 data = CSV.read(joinpath(base_path, "DES5YR/DES-SN5YR_HD+MetaData.csv"), DataFrame; delim = ',', ignorerepeated=true)
@@ -11,7 +11,7 @@ mu = data[:,:MU]
 mu_error = data[:,:MUERR_FINAL]
 
 # Open the file for reading
-f = open("/home/lassco/Adriel/pesquisa/DES5YR/covsys_000.txt", "r")
+f = open("path/DES5YR/covsys_000.txt", "r")
 
 # Read the first line and parse it as an integer (matrix size)
 n = parse(Int, readline(f))
@@ -40,9 +40,8 @@ c = 299792.458  # speed of light in km/s
 
 # Cosmological H(z) function - Global
 function H(z, om, H0)
-    Or = om/(1 +((2.5*10^4)*om*(H0/100)^2*(T0cmb/2.7)^(-4)))
-    #Or = 0
-    #Or = Orh2/(H0/100)^2
+    #Or = om/(1 +((2.5*10^4)*om*(H0/100)^2*(T0cmb/2.7)^(-4)))
+    Or = 0
     return H0 * sqrt(Or* (1.0 + z)^4 + om * (1 + z)^3 + (1 - om -Or))
 end
 
